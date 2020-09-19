@@ -1,5 +1,5 @@
 <template>
-  <form class="form" @submit.prevent="checkForm">
+  <form id="form" class="form" @click.prevent="checkForm">
     <div class="inputs">
       <div class="inputs__input">
         <input
@@ -55,7 +55,7 @@
         >*Введите корректно номер</p>
       </div>
     </div>
-    <button type="submit" class="btn">Попробовать бесплатно</button>
+    <button type="submit" class="btn" >Попробовать бесплатно</button>
   </form>
 </template>
 
@@ -77,6 +77,7 @@ export default {
         email: "",
         tel: "",
       },
+      toSend: {}
     };
   },
   validations: {
@@ -90,8 +91,14 @@ export default {
     checkForm() {
       this.$v.form.$touch();
       if (!this.$v.form.$error) {
-        console.log("Валидация прошла успешно");
-        console.log(this.form);
+        alert('Ваша заявка оставлена!')
+        this.$set(this.toSend, 'company', this.form.company)
+        this.$set(this.toSend, 'email', this.form.email)
+        this.$set(this.toSend, 'tel', this.form.tel)
+
+        this.form.company = ''
+        this.form.email = ''
+        this.form.tel = ''
       }
     },
   },
