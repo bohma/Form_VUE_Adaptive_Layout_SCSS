@@ -138,6 +138,16 @@ export default {
   font-family: "Gilroy", sans-serif;
   font-size: 18px;
   font-weight: 500;
+  cursor: pointer;
+  transition: 0.4s;
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    background: #3b69ff;
+    color: #ffffff;
+  }
 }
 .is-invalid {
   border: 1px red solid;
@@ -162,6 +172,10 @@ export default {
         width: 100%;
       }
     }
+  }
+  .btn:hover {
+    background: #001515;
+    color: #ffffff;
   }
 }
 </style>
