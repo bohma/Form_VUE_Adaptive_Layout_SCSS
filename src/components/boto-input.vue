@@ -5,18 +5,22 @@
         <input
           id="company"
           class="inputs__input-item"
-          placeholder="Название компании"
+          placeholder="Ваше имя"
           :class="$v.form.company.$error ? 'is-invalid' : ''"
           v-model.trim="$v.form.company.$model"
         />
         <p
           v-if="$v.form.company.$dirty && !$v.form.company.required"
           class="invalid-feedback"
-        >*Обязательное поле</p>
+        >
+          *Обязательное поле
+        </p>
         <p
           v-if="$v.form.company.$dirty && !$v.form.company.minLength"
           class="invalid-feedback"
-        >*Введите больше одного символа</p>
+        >
+          *Введите больше одного символа
+        </p>
       </div>
       <div class="inputs__input">
         <input
@@ -30,11 +34,15 @@
         <p
           v-if="$v.form.email.$dirty && !$v.form.email.required"
           class="invalid-feedback"
-        >*Обязательное поле</p>
+        >
+          *Обязательное поле
+        </p>
         <p
           v-if="$v.form.email.$dirty && !$v.form.email.email"
           class="invalid-feedback"
-        >*Введите корректно Email</p>
+        >
+          *Введите корректно Email
+        </p>
       </div>
       <div class="inputs__input">
         <input
@@ -48,19 +56,24 @@
         <p
           v-if="$v.form.tel.$dirty && !$v.form.tel.required"
           class="invalid-feedback"
-        >*Обязательное поле</p>
+        >
+          *Обязательное поле
+        </p>
         <p
           v-if="$v.form.tel.$dirty && !$v.form.tel.minLength"
           class="invalid-feedback"
-        >*Введите корректно номер</p>
+        >
+          *Введите корректно номер
+        </p>
       </div>
     </div>
-    <button type="submit" class="btn" >Попробовать бесплатно</button>
+    <button type="submit" class="btn">Попробовать бесплатно</button>
   </form>
 </template>
 
 <script>
 import { validationMixin } from "vuelidate";
+import axios from "axios";
 import {
   required,
   minLength,
@@ -72,12 +85,14 @@ export default {
   mixins: [validationMixin],
   data() {
     return {
+      chatId: "-402256735",
+      token: "1175499824:AAH4B34VTAFZgEjM2toceA9wtubGH1wrCrI",
       form: {
         company: "",
         email: "",
         tel: "",
       },
-      toSend: {}
+      toSend: {},
     };
   },
   validations: {
@@ -91,14 +106,22 @@ export default {
     checkForm() {
       this.$v.form.$touch();
       if (!this.$v.form.$error) {
-        alert('Ваша заявка оставлена!')
-        this.$set(this.toSend, 'company', this.form.company)
-        this.$set(this.toSend, 'email', this.form.email)
-        this.$set(this.toSend, 'tel', this.form.tel)
+        alert("Ваша заявка оставлена!");
+        this.$set(this.toSend, "name", this.form.company);
+        this.$set(this.toSend, "email", this.form.email);
+        this.$set(this.toSend, "tel", this.form.tel);
 
-        this.form.company = ''
-        this.form.email = ''
-        this.form.tel = ''
+        axios({
+          method: "post",
+          url: `https://api.telegram.org/bot${this.token}/sendMessage?chat_id=${
+            this.chatId
+          }&parse_mode=html&text=${JSON.stringify(this.toSend)}`,
+          data: {},
+        });
+
+        this.form.company = "";
+        this.form.email = "";
+        this.form.tel = "";
       }
     },
   },

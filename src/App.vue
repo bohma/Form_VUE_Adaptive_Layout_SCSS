@@ -5,20 +5,18 @@
         <div class="main__container">
           <div class="main__content">
             <h1 class="main__title">
-              Попробуйте
-              <span class="main__title_ttu">БЕСПЛАТНО</span>
+              Консалтинг по открытию 
+              <span class="main__title_ttu">кофейни</span>
             </h1>
             <div class="main__text">
               <div class="main__info">
-                <p class="main__info_big">2000&nbsp;</p>
-                <p>Бизнесов</p>
+                <p class="main__info_big">23&nbsp;</p>
+                <p>Кофейни</p>
               </div>
               <div class="main__data">
-                <p class="main__data-head">уже попробовали JoinChat.</p>
+                <p class="main__data-head">открыто при поддержке @aratour</p>
                 <p class="main__data-body">
-                  Присоединяйтесь к ним - создайте аккаунт прямо сейчас. Первые
-                  <b>15 дней</b>
-                  бесплатно.
+                  Включи <b>Guala</b> и наслаждайся Чиполлино. Присоеденяйся к победителям и будет у тебя всё <b>клубнично</b>.
                 </p>
               </div>
             </div>
