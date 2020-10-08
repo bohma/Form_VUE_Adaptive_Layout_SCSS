@@ -1,5 +1,4 @@
-# toboto
-https://hardcore-bhabha-33ed5e.netlify.app
+# https://hardcore-bhabha-33ed5e.netlify.app
 
 ## Project setup
 ```
