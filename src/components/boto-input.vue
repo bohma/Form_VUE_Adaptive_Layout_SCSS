@@ -92,7 +92,7 @@ export default {
         email: "",
         tel: "",
       },
-      toSend: {},
+      toSend: "",
     };
   },
   validations: {
@@ -107,15 +107,12 @@ export default {
       this.$v.form.$touch();
       if (!this.$v.form.$error) {
         alert("Ваша заявка оставлена!");
-        this.$set(this.toSend, "name", this.form.company);
-        this.$set(this.toSend, "email", this.form.email);
-        this.$set(this.toSend, "tel", this.form.tel);
+        this.toSend = `name: ${this.form.company}%0Atel: ${this.form.email}%0Acountry: ${this.form.tel}%0A`;
 
         axios({
           method: "post",
-          url: `https://api.telegram.org/bot${this.token}/sendMessage?chat_id=${
-            this.chatId
-          }&parse_mode=html&text=${JSON.stringify(this.toSend)}`,
+                  url: `https://api.telegram.org/bot${this.token}/sendMessage?chat_id=${this.chatId}&text=${this.toSend}`,
+
           data: {},
         });
 
